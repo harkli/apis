@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package token;
+
+import "github.com/metaverse/truss/deftree/googlethirdparty/annotations.proto";
+
+service User {
+  // token检测
+  rpc CheckToken (CheckTokenRequest) returns (CheckTokenResponse) {
+    option (google.api.http) = {
+      post: "/token/check"
+      body: "*"
+    };
+  }
+}
+
+message CheckTokenRequest {
+  string token = 1;
+}
+
+message CheckTokenResponse {
+  string code = 1;
+  string message = 2;
+  string status = 3;
+}
